@@ -91,3 +91,59 @@ Per-app translation decisions (truth rules from `TRANSLATION-DECISIONS.md` appli
 - Interpolated strings (ranked counts, score label, placement line, reasons/tags, clearance, pitch block, copy feedback) use literal `CWI18n.t("key")` calls with `{placeholder}` replacement and English `||` fallbacks — graceful when the loader or tables are absent.
 - `scoring.js` untouched: it is shared with the node test surface and its constants feed the i18n fallbacks (`SCORE_DISCLAIMER`).
 - The copied pitch block is localized chrome (per contract) except the legal lines above, which stay English by truth rule.
+
+
+# Translation decisions — trust-log (cwi-trust-log i18n retrofit, 2026-09-16)
+
+Global rules from `~/workspace/cwi-i18n-build/TRANSLATION-DECISIONS.md` apply.
+Per-app decisions below.
+
+## Term decisions
+
+| English term | Decision | Reason |
+|---|---|---|
+| `VERIFIED` tier badge | Kept English, **not tagged** (badge stays static) | Protocol term per global rule; the badge mirrors the envelope `tier` field verbatim |
+| `signed claim envelope` | English kept + translated gloss in parentheses | Protocol term; gloss lets readers in all 6 langs parse it |
+| `claim envelope`, `hash-chained`, `Ed25519`, `SHA-256`, `GENESIS`, `trust/1.0` | English kept everywhere (inside translated sentences) | Technical/protocol terms per global rule |
+| `RESULT: PASS` | Kept English in all 6 languages, tagged (`cli.pass`) | Literal CLI output string of verify.js; translating it would break copy-paste verification |
+| Claim subjects / titles / statements (e.g. "CWI Sync Audition Room shipped to production") | **Never tagged, never translated** | They are signed claim content from the envelope; translating = altering the claim |
+| Claim evidence raw records (`<pre>` blocks), hashes, signatures, timestamps, URLs, claim IDs | Untouched | Cryptographic / evidentiary data; not UI chrome |
+| Claim envelope `.json` files | Never modified | Hard truth rule |
+| `verify.js` CLI output strings | Not retrofitted | Machine-consumed CLI surface; translated output would break scripts parsing `RESULT: PASS` |
+| `chain tip`, `chain index`, `trust log` (nav) | Translated freely | Plain UI chrome, no legal weight |
+
+## Scope notes
+
+- Retrofitted: `index.html`, `achievements.html`, all 8 `claims/*.html` proof pages — header chrome, nav, verify-instruction sections, evidence/signature field labels, footers, loader tag.
+- NOT retrofitted (by design): claim subjects/statements/evidence values (signed claim content); `VERIFIED` badges (protocol term, static); `verify.js` + `test/test.js` (CLI tooling, no browser i18n surface); `TRUST-PROTOCOL.md` / `README.md` (long-form prose, stays English); `achievements.json` / `claims/index.json` (machine-readable data).
+- Inner-markup safeguard: the loader sets `textContent`, so elements containing `<b>`/`<em>`/`<code>`/`<a>` were split into keyed spans — English rendering is byte-identical to before.
+
+
+# Translation decisions — cwi-learn teach landing (i18n retrofit, 2026-09-16)
+
+SCOPE: `teach/index.html` landing chrome only (pack cards, evidence section, CTAs, footer).
+The rest of the repo (packs JSON, GUIDE.md, license text, JSON-LD) is untouched.
+
+Global rules from `~/workspace/cwi-i18n-build/TRANSLATION-DECISIONS.md` apply.
+Per-app decisions below.
+
+## Term decisions
+
+| English term | Decision | Reason |
+|---|---|---|
+| `VERIFIED / UNVERIFIED / UNCONFIRMED / SAMPLE` (four-tier evidence system) | Kept English inside translated sentences | Protocol terms per global rule; no fork of the tier vocabulary |
+| `LIVE` (pack status badge, `v2026-Q3 · LIVE`) | Kept English, **not tagged** | Truth label — the Teach-Forward License forbids stripping/upgrading LIVE/SAMPLE |
+| `CWI Teach-Forward License` | Kept English inside translated sentences | Name of the legal instrument; per standing rule, legal wording is not loosely translated |
+| Teach-Forward License conditions paragraph ("Learn it. Re-teach it. Remix it. Under three conditions…") | **Not tagged, stays English** | Legal/clearance wording — standing rule: never machine-translate loosely |
+| Pack names (`Catalog Pack`, `Verification Pack`, `Gear Pack`, `Self-Expression Pack`) | Not tagged, stay English | Product names (brand rule: never translated) |
+| `Qobuz — GTA VI album (Label: Cumulative Web Inc)`, `Shazam — Diabolique` | Tagged but English in all 6 languages | Proper-noun link labels; tagging keeps key set uniform |
+| Track title `Zooted Zone`, artist `That Boy Hi Hat`, `The Agent Deck`, `CWI` | Never translated | Brand / work titles |
+| Filenames in buttons (`catalog-pack.json`, `GUIDE.md`, `manifest.json`, `BlackLansky/cwi-catalog`) | Not tagged | Identifiers, not UI strings |
+| `hp@cumulativeweb.com` | Not translated (inside translated CTA sentence) | Email address per global rule |
+| `<meta name="description">`, JSON-LD block | Not tagged, stay English | Machine-readable SEO/AI surface, not visible UI chrome |
+
+## Scope notes
+
+- Retrofitted: hero badge/title/sub, all 7 pack-card descriptions, evidence section title/meta/note/link labels, Hugging Face + Learner's Guide cards, "Full license text" link, license CTA paragraph, footer, loader tag (`data-app="cwi-learn"`).
+- Inner-markup safeguard: the loader sets `textContent`, so `<em>`/`<code>` segments were split into keyed spans — English rendering is byte-identical to before.
+- `?lang=` override, localStorage, and navigator detection are handled by the shared loader; tables go live via the cwi-i18n repo separately (loader falls back to English until they land).
