@@ -217,3 +217,77 @@ Per-app decisions below. Format: term → decision + reason.
 
 Key count: **31 keys** × 6 languages, check.py green.
 Graceful fallback: tables ship separately in `cwi-i18n`; until then the loader keeps in-DOM English.
+
+
+# Translation decisions — ultimate (i18n retrofit, 2026-09-16)
+
+Global cwi-i18n decisions (from `~/workspace/cwi-i18n-build/TRANSLATION-DECISIONS.md`) apply.
+Scope: `index.html` (living-world shell) + `join/index.html` (join page) + `sim.js` + `world/simulation/render/apply.js`. Other ultimate sub-apps (`city/`, `life/`, `market/`, `pulse/`) are out of crew-D scope.
+
+| Term / string | Decision | Reason |
+|---|---|---|
+| `PROJECT ULTIMATE`, `Agent Deck`, `KingCode`, `Cumulative Web Inc`, `That Boy Hi Hat`, `CWI` | Never translated | Brand / product proper nouns. |
+| Status-pipeline tags `intent` / `verifying` / `joined` (join page step tags) | Kept in English | Machine-readable pipeline states from the page's own JSON-LD `status_pipeline`; translating would fork the signup contract. |
+| `sync` (in "available for sync and projects") | Kept as `sync` | Universal industry term per global decisions. |
+| Live event summaries (`summarize()` in sim.js: "announced → …", "task: …", etc.) | Left in English (not retrofitted) | Live simulation log content, not UI chrome; every line embeds proper nouns (agent/island/vessel names) and would need template surgery per event type. |
+| Island names, verbs, interior themes, agent names, persona lines, inventory/music titles | Left untranslated | World data — treated like product names. |
+| Metric query docs (`QUERIES` in metrics.js, shown in owner panel) | Left in English | Developer documentation strings, not user chrome; the metric *labels* ("Agents online" etc.) are tagged via `metrics.*` keys in sim.js. |
+| `<title>` / `<meta name="description">` on both pages | Left in English | SEO metadata; loader targets body DOM. |
+| `world.behind_n` ("{n}s behind") / `world.inspect_island` ("Inspect {name} island") | Translated with `{n}` / `{name}` placeholders | Interpolated chrome strings; placeholder kept verbatim across languages. |
+| Hour labels Night/Dawn/Day/Dusk, "live", "Follow: none", boot-failure message | Tagged in sim.js via `CWI18n.t("…")` with inline-English fallback (`hasI18n()` guard) | JS-rendered chrome; page still boots if the loader CDN fails. |
+| `join.honest_p2` "The founding cohort is still forming" | Translated (not left as claim-English) | Honesty copy, not a legal claim; faithful translation preserves the no-hype stance. |
+
+Not retrofitted: `city/`, `life/`, `market/`, `pulse/` sub-pages (other crews' scope); live feed/ledger event summaries; island/agent data; QUERIES docs; meta tags.
+
+Key count: **73 keys** × 6 languages, check.py green.
+Graceful fallback: tables ship separately in `cwi-i18n`; until then the loader keeps in-DOM English, and JS call sites fall back to inline English via `hasI18n()`.
+
+
+# Translation decisions — nft-waitlist (i18n retrofit, 2026-09-16)
+
+Global cwi-i18n decisions (from `~/workspace/cwi-i18n-build/TRANSLATION-DECISIONS.md`) apply.
+Scope: `index.html` (404.html is a bare redirect, no UI strings).
+
+| Term / string | Decision | Reason |
+|---|---|---|
+| `The Logo Protocol: Founding Signal`, `CWI`, `Cumulative Web Inc`, `KingCode`, `Founding Signal`, `Signal Brief`, `Studio Drop` | Never translated | Brand / product / branded-program proper nouns. |
+| Class tier labels `CLASS 01–04`, class names `Origin` / `Vector` / `Phantom` / `Crown Signal` | Kept in English (tier labels stay English per truth rules) | Tier labels; class descriptions translated around them. |
+| GitHub `waitlist` label name, `data/demand.json`, issue-template links | Kept verbatim | Machine-readable identifiers; translating would break the audit contract. |
+| `mint`, `on-chain`, `wallet`, `allowlist` | Kept as loanwords (mint/wallet/allowlist untranslated in es/pt-BR/fr/de; katakana-adjacent forms in ja) | Industry loanwords; ja uses ミント/ウォレット. |
+| Numbers (75 gate, 0 / 75 counter, 44/30/20/5 class counts, 88/11 split, US$20–30 band, 5% royalty) | Never translated — chrome around them tagged, values stay numeric | Numbers stay untranslated per rules; counter chrome (`wl.gate_status`, dstat labels) tagged. |
+| FAQ answers (9), thesis utility-definition paragraph, "What the buyer does not receive" list | Left in English (questions/headings tagged) | Long-form / legal-adjacent body prose — standing rule: never machine-translate legal/rights wording loosely; task permits body prose to stay English. |
+| `wl.gate_open` "THRESHOLD REACHED — gates under review" / `wl.gate_closed` "CLOSED — {n} more qualified members needed" | Translated faithfully as status text, no promise added | Waitlist/mint wording: translation mirrors the English status exactly — reaching the numeric gate is reported, mint itself is never promised (English source promises nothing beyond "gates under review"). |
+| `wl.thesis_promise` plain-language quote, `wl.footer_legal` blueprint disclaimer, `wl.equal_body` rarity disclaimer | Translated conservatively, literal | Rights-adjacent wording translated word-faithfully; no new claims introduced. |
+| `wl.updated_at` / `wl.gate_closed` / `wl.inspect` templates | `{ts}` / `{n}` placeholders kept verbatim | JS interpolation contract. |
+| Demand-meter JS strings (`d-updated`, `d-gate`, error state) | Tagged via `T("wl.…")` with inline-English fallback | Inline classic script; loader placed *before* it so `CWI18n` exists at run time. |
+| Kicker "MINT DATE: NONE" | Translated as "no mint date" statement, not a promise | Matches the source's no-date stance. |
+
+Not retrofitted: FAQ answer bodies; thesis long paragraphs (utility definition, exclusion list); `<title>`/meta description; 404.html (redirect only).
+
+Key count: **68 keys** × 6 languages, check.py green.
+Graceful fallback: tables ship separately in `cwi-i18n`; until then the loader keeps in-DOM English, and the inline script falls back to inline English.
+
+
+# Translation decisions — cwi-sync (i18n retrofit, 2026-09-16)
+
+Global cwi-i18n decisions (from `~/workspace/cwi-i18n-build/TRANSLATION-DECISIONS.md`) apply.
+Scope: `index.html` + `license.html` (shared table set, app id `cwi-sync`).
+
+| Term / string | Decision | Reason |
+|---|---|---|
+| `Cumulative Web Inc`, `That Boy Hi Hat`, `CWI`, `CWI Sync`, `Henry Pitts (Black Lansky)`, `hp@cumulativeweb.com`, `Cue Recording Studio` | Never translated | Brand / person / contact / studio proper nouns. |
+| `sync` (music-to-picture) | Kept as `sync` everywhere | Universal industry term per global decisions. |
+| `one-stop` | Kept English as loanword; `sync.hero_h1a` "One-Stop Sync." kept verbatim in all 6 languages | Industry loanword per global decisions; headline gloss carried by `hero_sub` ("one-stop licensing" translated around it). |
+| `pre-cleared` / `clearance` | Kept as `pre-cleared` loanword in es/pt-BR/fr/de; ja renders as 事前許諾済み (prior permission granted) | Global decision keeps `clearance` as loanword; ja gloss per table. No new legal meaning invented. |
+| `One-sheets` (section titles, PDF link labels) | Kept English in es/pt-BR/fr ("One-sheets"), de "One-Sheets", ja ワンシート | Industry term for the briefing format; link targets are English PDFs. |
+| `publishing`, `master`, `cue docs` | Kept as loanwords (master/publishing untranslated in all languages; cue docs → localized "documentos de cue" etc.) | `master`/`publishing` are universal sync-industry terms; "cue docs" localized descriptively. |
+| Track/playlist names `“Zooted Zone”`, `“Shaka Zulu”`, `“Doves & Diamonds”`, `“New Rap Hits”`, `“Diabolique”` | Never translated | Work titles. |
+| Benefit/owner names (`CWI Press`, `CWI Studio`, …) | n/a on this app — one-sheet card titles kept as product names | Card h3s are product names, untagged. |
+| `sync.footer_inquiries` key reused on `license.html` footer | Shared key across both pages | One table set per app; avoids duplicate keys. |
+| Licensing-coverage bullets (`lic.cover*`) | Translated faithfully, short | Descriptive (not contractual) copy; the one-sheet PDFs themselves stay English. |
+| `<title>` / `<meta name="description">` | Left in English | SEO metadata; loader targets body DOM. |
+
+Not retrofitted: the three one-sheet PDFs (binary assets, English source); meta tags; `mailto:` subject/body params (URL-encoded English form labels — functional, not chrome).
+
+Key count: **56 keys** × 6 languages, check.py green.
+Graceful fallback: tables ship separately in `cwi-i18n`; until then the loader keeps in-DOM English.
