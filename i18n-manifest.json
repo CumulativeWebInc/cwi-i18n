@@ -1,172 +1,183 @@
 {
- "apps": {
-  "agent-deck": {
-   "languages": [
-    "en",
-    "es",
-    "pt-BR",
-    "fr",
-    "de",
-    "ja"
-   ],
-   "repo": "CumulativeWebInc/agent-deck"
+  "apps": {
+    "agent-deck": {
+      "languages": [
+        "en",
+        "es",
+        "pt-BR",
+        "fr",
+        "de",
+        "ja"
+      ],
+      "repo": "CumulativeWebInc/agent-deck"
+    },
+    "agent-directory": {
+      "languages": [
+        "en",
+        "es",
+        "pt-BR",
+        "fr",
+        "de",
+        "ja"
+      ],
+      "repo": "CumulativeWebInc/cwi-agent-directory"
+    },
+    "brief-matcher": {
+      "languages": [
+        "en",
+        "es",
+        "pt-BR",
+        "fr",
+        "de",
+        "ja"
+      ],
+      "repo": "CumulativeWebInc/cwi-brief-matcher"
+    },
+    "cwi-i18n": {
+      "languages": [
+        "en",
+        "es",
+        "pt-BR",
+        "fr",
+        "de",
+        "ja"
+      ],
+      "repo": "CumulativeWebInc/cwi-i18n"
+    },
+    "cwi-learn": {
+      "languages": [
+        "en",
+        "es",
+        "pt-BR",
+        "fr",
+        "de",
+        "ja"
+      ],
+      "repo": "CumulativeWebInc/cwi-learn"
+    },
+    "cwi-sync": {
+      "languages": [
+        "en",
+        "es",
+        "pt-BR",
+        "fr",
+        "de",
+        "ja"
+      ],
+      "repo": "CumulativeWebInc/cwi-sync"
+    },
+    "nft-waitlist": {
+      "languages": [
+        "en",
+        "es",
+        "pt-BR",
+        "fr",
+        "de",
+        "ja"
+      ],
+      "repo": "CumulativeWebInc/cwi-nft-waitlist"
+    },
+    "playback-chip": {
+      "languages": [
+        "en",
+        "es",
+        "pt-BR",
+        "fr",
+        "de",
+        "ja"
+      ],
+      "repo": "CumulativeWebInc/playback-chip"
+    },
+    "sync-audition": {
+      "languages": [
+        "en",
+        "es",
+        "pt-BR",
+        "fr",
+        "de",
+        "ja"
+      ],
+      "repo": "CumulativeWebInc/cwi-sync-audition"
+    },
+    "trust-log": {
+      "languages": [
+        "en",
+        "es",
+        "pt-BR",
+        "fr",
+        "de",
+        "ja"
+      ],
+      "repo": "CumulativeWebInc/cwi-trust-log"
+    },
+    "ultimate": {
+      "languages": [
+        "en",
+        "es",
+        "pt-BR",
+        "fr",
+        "de",
+        "ja"
+      ],
+      "repo": "CumulativeWebInc/ultimate"
+    },
+    "context-grants": {
+      "languages": [
+        "en",
+        "es",
+        "pt-BR",
+        "fr",
+        "de",
+        "ja"
+      ],
+      "repo": "CumulativeWebInc/cwi-context-grants"
+    },
+    "listening-room": {
+      "languages": [
+        "en",
+        "es",
+        "pt-BR",
+        "fr",
+        "de",
+        "ja"
+      ],
+      "repo": "CumulativeWebInc/cwi-listening-room"
+    }
   },
-  "agent-directory": {
-   "languages": [
-    "en",
-    "es",
-    "pt-BR",
-    "fr",
-    "de",
-    "ja"
-   ],
-   "repo": "CumulativeWebInc/cwi-agent-directory"
-  },
-  "brief-matcher": {
-   "languages": [
-    "en",
-    "es",
-    "pt-BR",
-    "fr",
-    "de",
-    "ja"
-   ],
-   "repo": "CumulativeWebInc/cwi-brief-matcher"
-  },
-  "cwi-i18n": {
-   "languages": [
-    "en",
-    "es",
-    "pt-BR",
-    "fr",
-    "de",
-    "ja"
-   ],
-   "repo": "CumulativeWebInc/cwi-i18n"
-  },
-  "cwi-learn": {
-   "languages": [
-    "en",
-    "es",
-    "pt-BR",
-    "fr",
-    "de",
-    "ja"
-   ],
-   "repo": "CumulativeWebInc/cwi-learn"
-  },
-  "cwi-sync": {
-   "languages": [
-    "en",
-    "es",
-    "pt-BR",
-    "fr",
-    "de",
-    "ja"
-   ],
-   "repo": "CumulativeWebInc/cwi-sync"
-  },
-  "nft-waitlist": {
-   "languages": [
-    "en",
-    "es",
-    "pt-BR",
-    "fr",
-    "de",
-    "ja"
-   ],
-   "repo": "CumulativeWebInc/cwi-nft-waitlist"
-  },
-  "playback-chip": {
-   "languages": [
-    "en",
-    "es",
-    "pt-BR",
-    "fr",
-    "de",
-    "ja"
-   ],
-   "repo": "CumulativeWebInc/playback-chip"
-  },
-  "sync-audition": {
-   "languages": [
-    "en",
-    "es",
-    "pt-BR",
-    "fr",
-    "de",
-    "ja"
-   ],
-   "repo": "CumulativeWebInc/cwi-sync-audition"
-  },
-  "trust-log": {
-   "languages": [
-    "en",
-    "es",
-    "pt-BR",
-    "fr",
-    "de",
-    "ja"
-   ],
-   "repo": "CumulativeWebInc/cwi-trust-log"
-  },
-  "ultimate": {
-   "languages": [
-    "en",
-    "es",
-    "pt-BR",
-    "fr",
-    "de",
-    "ja"
-   ],
-   "repo": "CumulativeWebInc/ultimate"
-  },
-  "context-grants": {
-   "languages": [
-    "en",
-    "es",
-    "pt-BR",
-    "fr",
-    "de",
-    "ja"
-   ],
-   "repo": "CumulativeWebInc/cwi-context-grants"
-  }
- },
- "languages": [
-  {
-   "code": "en",
-   "name": "English",
-   "native": "English"
-  },
-  {
-   "code": "es",
-   "name": "Spanish",
-   "native": "Espa\u00f1ol"
-  },
-  {
-   "code": "pt-BR",
-   "name": "Portuguese (Brazil)",
-   "native": "Portugu\u00eas (BR)"
-  },
-  {
-   "code": "fr",
-   "name": "French",
-   "native": "Fran\u00e7ais"
-  },
-  {
-   "code": "de",
-   "name": "German",
-   "native": "Deutsch"
-  },
-  {
-   "code": "ja",
-   "name": "Japanese",
-   "native": "\u65e5\u672c\u8a9e"
-  }
- ],
- "loader": "https://cumulativewebinc.github.io/cwi-i18n/i18n.js",
- "name": "cwi-i18n",
- "table_url_template": "https://cumulativewebinc.github.io/cwi-i18n/tables/{app}/{lang}.json",
- "version": "1.0.0"
+  "languages": [
+    {
+      "code": "en",
+      "name": "English",
+      "native": "English"
+    },
+    {
+      "code": "es",
+      "name": "Spanish",
+      "native": "Español"
+    },
+    {
+      "code": "pt-BR",
+      "name": "Portuguese (Brazil)",
+      "native": "Português (BR)"
+    },
+    {
+      "code": "fr",
+      "name": "French",
+      "native": "Français"
+    },
+    {
+      "code": "de",
+      "name": "German",
+      "native": "Deutsch"
+    },
+    {
+      "code": "ja",
+      "name": "Japanese",
+      "native": "日本語"
+    }
+  ],
+  "loader": "https://cumulativewebinc.github.io/cwi-i18n/i18n.js",
+  "name": "cwi-i18n",
+  "table_url_template": "https://cumulativewebinc.github.io/cwi-i18n/tables/{app}/{lang}.json",
+  "version": "1.0.0"
 }
