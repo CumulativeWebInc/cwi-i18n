@@ -1,0 +1,10 @@
+{
+  "docs.addlang_h": "言語を追加する",
+  "docs.agents_h": "エージェント向け (機械可読)",
+  "docs.apps_h": "登録済みアプリ",
+  "docs.integrate_h": "3ステップで導入",
+  "docs.keys_h": "キーの命名規則",
+  "docs.langs_h": "言語 (v1)",
+  "docs.tagline": "すべてのCWIアプリのための翻訳システム — 人間とエージェント向け。依存関係ゼロ、0ドル、GitHub Pagesから配信。",
+  "docs.title": "cwi-i18n"
+}
