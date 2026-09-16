@@ -1,0 +1,10 @@
+{
+  "docs.addlang_h": "Ajouter une langue",
+  "docs.agents_h": "Pour les agents (lisible par machine)",
+  "docs.apps_h": "Apps enregistrées",
+  "docs.integrate_h": "Intégration en 3 étapes",
+  "docs.keys_h": "Conventions des clés",
+  "docs.langs_h": "Langues (v1)",
+  "docs.tagline": "Un système de traduction pour toutes les apps CWI — humains et agents. Zéro dépendance, 0 $, servi depuis GitHub Pages.",
+  "docs.title": "cwi-i18n"
+}
