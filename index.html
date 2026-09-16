@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>cwi-i18n — shared translations for CWI software</title>
+<style>
+:root{--gold:#f5c518;--bg:#0d0d0d;--panel:#161616;--line:#2c2c2c;--txt:#eee;--mut:#9a9a9a}
+*{box-sizing:border-box}body{margin:0;background:var(--bg);color:var(--txt);font:16px/1.6 system-ui,sans-serif}
+.wrap{max-width:860px;margin:0 auto;padding:32px 18px 80px}
+h1{font-size:30px;margin:.2em 0}h2{font-size:21px;margin:1.8em 0 .5em;color:var(--gold)}
+p,li{color:var(--txt)}code{background:#222;padding:2px 7px;border-radius:6px;font-size:14px}
+pre{background:var(--panel);border:1px solid var(--line);border-radius:10px;padding:14px;overflow:auto;font-size:13.5px}
+pre code{background:none;padding:0}
+a{color:var(--gold)}.mut{color:var(--mut)}.badge{display:inline-block;border:1px solid var(--gold);color:var(--gold);border-radius:999px;padding:2px 12px;font-size:12px;margin-bottom:10px}
+table{border-collapse:collapse;width:100%;font-size:14px}th,td{border:1px solid var(--line);padding:8px 10px;text-align:left}th{color:var(--gold)}
+.note{border-left:3px solid var(--gold);padding:8px 14px;background:var(--panel);border-radius:0 8px 8px 0;margin:14px 0}
+</style>
+</head>
+<body>
+<div class="wrap">
+<span class="badge">Cumulative Web Inc · shared infrastructure</span>
+<h1 data-i18n="docs.title">cwi-i18n</h1>
+<p class="mut" data-i18n="docs.tagline">One translation system for every CWI app — humans and agents. Zero dependencies, $0, served from GitHub Pages.</p>
+
+<h2 data-i18n="docs.integrate_h">Integrate in 3 steps</h2>
+<ol>
+<li>Tag your UI strings: <code>&lt;p data-i18n="hero.tagline"&gt;English fallback&lt;/p&gt;</code></li>
+<li>Add the loader before <code>&lt;/body&gt;</code>:
+<pre><code>&lt;script src="https://cumulativewebinc.github.io/cwi-i18n/i18n.js" data-app="&lt;your-app-id&gt;"&gt;&lt;/script&gt;</code></pre></li>
+<li>Publish your tables at <code>/tables/&lt;app-id&gt;/&lt;lang&gt;.json</code> in this repo and register the app in <code>i18n-manifest.json</code>.</li>
+</ol>
+<p>You get: a floating globe language switcher (auto-injected, mobile-friendly), <code>?lang=</code> URL override, localStorage persistence, and first-visit auto-detect from <code>navigator.language</code>.</p>
+
+<h2 data-i18n="docs.keys_h">Key conventions</h2>
+<table>
+<tr><th>Attribute</th><th>Effect</th></tr>
+<tr><td><code>data-i18n="key"</code></td><td>replaces element text</td></tr>
+<tr><td><code>data-i18n-ph="key"</code></td><td>replaces <code>placeholder</code></td></tr>
+<tr><td><code>data-i18n-title="key"</code></td><td>replaces <code>title</code></td></tr>
+<tr><td><code>data-i18n-aria="key"</code></td><td>replaces <code>aria-label</code></td></tr>
+</table>
+<p>Key style: <code>section.name</code> — lowercase, dots for hierarchy (e.g. <code>clearance.line</code>, <code>share.button</code>). For JS-rendered content use <code>CWI18n.t("key")</code> and call <code>CWI18n.apply()</code> after rendering (a MutationObserver also picks up new nodes automatically).</p>
+<pre><code>// programmatic use
+CWI18n.init({ app: "sync-audition", defaultLang: "en" }).then(function (lang) {
+  document.title = CWI18n.t("meta.title") || document.title;
+});
+CWI18n.setLang("es");          // switch at runtime
+CWI18n.getLang();              // "es"
+CWI18n.supported;              // ["en","es","pt-BR","fr","de","ja"]
+CWI18n.ready(function (l) {}); // run after tables load</code></pre>
+
+<h2 data-i18n="docs.langs_h">Languages (v1)</h2>
+<table>
+<tr><th>Code</th><th>Language</th><th>Notes</th></tr>
+<tr><td><code>en</code></td><td>English</td><td>base — every key must exist here first</td></tr>
+<tr><td><code>es</code></td><td>Español</td><td></td></tr>
+<tr><td><code>pt-BR</code></td><td>Português (Brasil)</td><td>bare <code>pt</code> browsers map here</td></tr>
+<tr><td><code>fr</code></td><td>Français</td><td></td></tr>
+<tr><td><code>de</code></td><td>Deutsch</td><td></td></tr>
+<tr><td><code>ja</code></td><td>日本語</td><td></td></tr>
+</table>
+<div class="note"><strong>Translations are v1 human-grade</strong> — short UI strings translated with care, legal/clearance wording kept conservative (see TRANSLATION-DECISIONS.md). Corrections welcome: <a href="mailto:hp@cumulativeweb.com">hp@cumulativeweb.com</a>.</div>
+
+<h2 data-i18n="docs.addlang_h">Add a language</h2>
+<ol>
+<li>Copy an app's <code>en.json</code> to <code>&lt;new-code&gt;.json</code> under <code>/tables/&lt;app&gt;/</code>.</li>
+<li>Translate every value; keep keys identical. Never invent keys.</li>
+<li>Add the code + native name to <code>i18n-manifest.json</code> and the <code>SUPPORTED</code> list in <code>i18n.js</code>.</li>
+<li>Run the key-coverage test: every <code>data-i18n</code> key must exist in every language table.</li>
+</ol>
+
+<h2 data-i18n="docs.agents_h">For agents (machine-readable)</h2>
+<p>Tables: <code>https://cumulativewebinc.github.io/cwi-i18n/tables/&lt;app&gt;/&lt;lang&gt;.json</code><br>
+Manifest: <code>https://cumulativewebinc.github.io/cwi-i18n/i18n-manifest.json</code></p>
+<pre><code># Localize any CWI app's UI for your user:
+GET https://cumulativewebinc.github.io/cwi-i18n/i18n-manifest.json
+# → apps × languages, then:
+GET https://cumulativewebinc.github.io/cwi-i18n/tables/sync-audition/ja.json
+# → { "key": "translated string", ... } — render or speak in the user's language.</code></pre>
+<p class="mut">Agent pattern: read the manifest, pick the app + the user's language, fetch the table, and use the translated strings when presenting CWI content. Fall back to <code>en</code> for any missing key.</p>
+
+<h2 data-i18n="docs.apps_h">Registered apps</h2>
+<p id="app-list" class="mut">Loading manifest…</p>
+<script>
+fetch('i18n-manifest.json').then(function(r){return r.json()}).then(function(m){
+  document.getElementById('app-list').innerHTML =
+    Object.keys(m.apps).map(function(a){return '<code>'+a+'</code>'}).join(' ');
+}).catch(function(){document.getElementById('app-list').textContent='manifest unavailable';});
+</script>
+
+<p class="mut" style="margin-top:3em">cwi-i18n v1.0 · MIT · Cumulative Web Inc · truth rule: never machine-translate legal wording loosely — see TRANSLATION-DECISIONS.md</p>
+</div>
+<script src="i18n.js" data-app="cwi-i18n"></script>
+</body>
+</html>
