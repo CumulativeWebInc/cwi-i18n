@@ -147,3 +147,73 @@ Per-app decisions below.
 - Retrofitted: hero badge/title/sub, all 7 pack-card descriptions, evidence section title/meta/note/link labels, Hugging Face + Learner's Guide cards, "Full license text" link, license CTA paragraph, footer, loader tag (`data-app="cwi-learn"`).
 - Inner-markup safeguard: the loader sets `textContent`, so `<em>`/`<code>` segments were split into keyed spans — English rendering is byte-identical to before.
 - `?lang=` override, localStorage, and navigator detection are handled by the shared loader; tables go live via the cwi-i18n repo separately (loader falls back to English until they land).
+
+
+# Translation decisions — agent-deck (i18n retrofit, 2026-09-16)
+
+Global cwi-i18n decisions (from `~/workspace/cwi-i18n-build/TRANSLATION-DECISIONS.md`) apply.
+Per-app decisions below. Format: term → decision + reason.
+
+| Term / string | Decision | Reason |
+|---|---|---|
+| `DRAFT` (footer draft-tag, licensing status) | Kept in English in all 6 languages | Legal-status term tied to the draft licensing page; translating it would fork the licensing status vocabulary. |
+| `VERIFIED` / `SAMPLE` / `LIVE` data-truth labels (badges) | Badge chrome translated ("Live facts" → localized); the tier words inside legal/advisory prose kept English | UI labels localize; protocol tier terms stay English per truth-tier rule. |
+| `sync` (in "Sync & Licensing" dept name) | Kept as `sync` in all languages | Universal industry term per global decisions. |
+| `one-stop` | Kept English + gloss where it appears in chrome | Industry loanword per global decisions. |
+| `Agent Deck`, product names (`Signal Boy`, `Gear Ledger`, `THE STREETLIGHT`, …), `CWI`, `That Boy Hi Hat` | Never translated | Brand/product proper nouns. |
+| `products.json` nav link text | Left untagged (English filename) | Literal filename — translating it would break the machine-readable contract. |
+| `license/index.html` legal body (sections 1–8, draft banner, restriction bullets) | Left entirely in English; only nav/footer/h1 tagged | Standing rule: never machine-translate legal/clearance/rights wording loosely. Legal translation needs professional review. |
+| Card descriptions (`<p>` under each SKU card), product-page `Purpose`/`Who it's for`/`Data truth` values, `What it does` prose | Left untagged (English) | Long-form/product body prose — task permits leaving body prose untagged. Chrome around them is tagged. |
+| `dept-tag` counts ("1 on the shelf", "4 on the shelf", bare numbers on products page) | Left untagged | Data values (counts); numbers stay untranslated per rules. |
+| Per-product meta advisories ("Advisory tooling only…", "Ships in DRAFT MODE…", "Ships empty-but-honest…", "Prototype complete 2026-09-16…") | Left untagged (English) | Advisory/legal-adjacent status prose; legal-preservation rule applies. |
+| Shelf `h2` dept names, nav, hero, stats labels, CTAs, kv labels, pricing card, back link, footer | Tagged + translated | Visible UI chrome — 50 keys × 6 languages. |
+
+Key count: **50 keys** × 6 languages, check.py green.
+Graceful fallback: tables ship separately in `cwi-i18n`; until then the loader keeps in-DOM English.
+
+
+# Translation decisions — playback-chip (i18n retrofit, 2026-09-16)
+
+Global cwi-i18n decisions (from `~/workspace/cwi-i18n-build/TRANSLATION-DECISIONS.md`) apply.
+Per-app decisions below. Format: term → decision + reason.
+
+| Term / string | Decision | Reason |
+|---|---|---|
+| Verdict pills `VERIFIED` / `UNVERIFIABLE` / `DEVIATION` / `CLAIM-FLAG` / `DENIED` | Kept in English, never translated (rendered from engine data) | Protocol verdict vocabulary — translating would fork the audit protocol. `UNVERIFIABLE` is a verdict per the honesty rule. |
+| `SAMPLE` (badge, flag, buttons) | Kept in English everywhere | Truth-tier term per global decisions. |
+| Score bands `clean` / `notes` / `rewrites-needed` / `don't-ship` | Kept in English; band *meanings* translated | Band names are engine-computed protocol values (also CSS class roots); meanings carry the human explanation. |
+| `LIVE` (fact-set badge) | Kept in English | Truth-tier term. |
+| `sync` | Kept as `sync` | Universal industry term. |
+| `THE PLAYBACK CHIP`, `CWI-1 Scoreboard Chip`, `cwi-playback/v1`, `playback-schema.json`, `playback.js`, `playback.py` | Never translated | Product/artifact proper nouns and literal filenames. |
+| `(JS port of playback.py v1.0.0, parity-tested)` footer fragment | Left untagged (English) | Technical provenance note; filenames + test status. |
+| `Gear #26`, `Data Dept` badge | Translated (`chip.badge_dept`) | UI chrome, no protocol weight. |
+| Honesty-rule paragraph, how-it-works steps, buttons, report labels, error strings | Tagged + translated | Visible UI chrome — 56 keys × 6 languages. |
+| `▶` / `⤓` button glyphs | Kept as-is in all languages | Symbols, not words. |
+
+Implementation note: JS-rendered strings use a `T(k, fallback)` helper wrapping `CWI18n.t(k)` so the
+page renders correct English even if the loader/table fails; `CWI18n.apply()` is not needed after
+`render()` because the loader's MutationObserver auto-applies `data-i18n` to inserted nodes.
+
+Key count: **56 keys** × 6 languages, check.py green.
+Graceful fallback: tables ship separately in `cwi-i18n`; until then the loader keeps in-DOM English.
+
+
+# Translation decisions — agent-directory (i18n retrofit, 2026-09-16)
+
+Global cwi-i18n decisions (from `~/workspace/cwi-i18n-build/TRANSLATION-DECISIONS.md`) apply.
+Per-app decisions below. Format: term → decision + reason.
+
+| Term / string | Decision | Reason |
+|---|---|---|
+| Agent names (`KingCode`, `Needle`, `Marquee`, `Seal`, `Dial`, `Dateline`, `Fader`, `Ledger`, `Charter`), handles (`@muse_cwi`, `@CWI_AandR`, …), Moltbook URLs | Never translated | Proper nouns / identifiers. |
+| `LIVE` (profile badges, live-dots) | Kept in English | Truth-tier term per global decisions. |
+| `sync` (in "Sync & Licensing" dept/role) | Kept as `sync` | Universal industry term. |
+| `A&R` | Kept as `A&R` | Industry abbreviation, universal. |
+| `cwi-agent-directory/v1`, `agents.json` | Never translated | Version tag / literal filename. |
+| Agent `mandate` paragraphs (9, JS-rendered) | Left untagged (English) | Long-form body prose — task permits leaving body prose untagged; noted here. |
+| Dept labels, role labels, "Moltbook profile" link text | Tagged + translated via `data-i18n` in JS templates + `CWI18n.apply()` after render | Visible UI chrome — 31 keys × 6 languages. |
+| "Truth labels." note + verification note + operating rule | Tagged + translated | UI chrome with factual content (dates kept as data). |
+| Footer (`Machine-readable directory:`, `Contact:`, `© Cumulative Web Inc`) | Tagged + translated | UI chrome. |
+
+Key count: **31 keys** × 6 languages, check.py green.
+Graceful fallback: tables ship separately in `cwi-i18n`; until then the loader keeps in-DOM English.
