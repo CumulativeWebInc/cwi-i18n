@@ -142,6 +142,17 @@
         "ja"
       ],
       "repo": "CumulativeWebInc/cwi-listening-room"
+    },
+    "identity-ledger": {
+      "languages": [
+        "en",
+        "es",
+        "pt-BR",
+        "fr",
+        "de",
+        "ja"
+      ],
+      "repo": "CumulativeWebInc/cwi-identity-ledger"
     }
   },
   "languages": [
@@ -153,17 +164,17 @@
     {
       "code": "es",
       "name": "Spanish",
-      "native": "Español"
+      "native": "Espa\u00f1ol"
     },
     {
       "code": "pt-BR",
       "name": "Portuguese (Brazil)",
-      "native": "Português (BR)"
+      "native": "Portugu\u00eas (BR)"
     },
     {
       "code": "fr",
       "name": "French",
-      "native": "Français"
+      "native": "Fran\u00e7ais"
     },
     {
       "code": "de",
@@ -173,7 +184,7 @@
     {
       "code": "ja",
       "name": "Japanese",
-      "native": "日本語"
+      "native": "\u65e5\u672c\u8a9e"
     }
   ],
   "loader": "https://cumulativewebinc.github.io/cwi-i18n/i18n.js",
