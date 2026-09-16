@@ -33,6 +33,17 @@
       ],
       "repo": "CumulativeWebInc/cwi-brief-matcher"
     },
+    "context-grants": {
+      "languages": [
+        "en",
+        "es",
+        "pt-BR",
+        "fr",
+        "de",
+        "ja"
+      ],
+      "repo": "CumulativeWebInc/cwi-context-grants"
+    },
     "cwi-i18n": {
       "languages": [
         "en",
@@ -65,6 +76,28 @@
         "ja"
       ],
       "repo": "CumulativeWebInc/cwi-sync"
+    },
+    "identity-ledger": {
+      "languages": [
+        "en",
+        "es",
+        "pt-BR",
+        "fr",
+        "de",
+        "ja"
+      ],
+      "repo": "CumulativeWebInc/cwi-identity-ledger"
+    },
+    "listening-room": {
+      "languages": [
+        "en",
+        "es",
+        "pt-BR",
+        "fr",
+        "de",
+        "ja"
+      ],
+      "repo": "CumulativeWebInc/cwi-listening-room"
     },
     "nft-waitlist": {
       "languages": [
@@ -120,39 +153,6 @@
         "ja"
       ],
       "repo": "CumulativeWebInc/ultimate"
-    },
-    "context-grants": {
-      "languages": [
-        "en",
-        "es",
-        "pt-BR",
-        "fr",
-        "de",
-        "ja"
-      ],
-      "repo": "CumulativeWebInc/cwi-context-grants"
-    },
-    "listening-room": {
-      "languages": [
-        "en",
-        "es",
-        "pt-BR",
-        "fr",
-        "de",
-        "ja"
-      ],
-      "repo": "CumulativeWebInc/cwi-listening-room"
-    },
-    "identity-ledger": {
-      "languages": [
-        "en",
-        "es",
-        "pt-BR",
-        "fr",
-        "de",
-        "ja"
-      ],
-      "repo": "CumulativeWebInc/cwi-identity-ledger"
     }
   },
   "languages": [
@@ -188,6 +188,17 @@
     }
   ],
   "loader": "https://cumulativewebinc.github.io/cwi-i18n/i18n.js",
+  "memory-seal": {
+    "languages": [
+      "en",
+      "es",
+      "pt-BR",
+      "fr",
+      "de",
+      "ja"
+    ],
+    "repo": "CumulativeWebInc/cwi-memory-seal"
+  },
   "name": "cwi-i18n",
   "table_url_template": "https://cumulativewebinc.github.io/cwi-i18n/tables/{app}/{lang}.json",
   "version": "1.0.0"
